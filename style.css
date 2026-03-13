@@ -1,0 +1,140 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #eeeeee;
+  color: #333;
+}
+
+.container {
+  max-width: 930px;
+  margin: 30px auto 40px;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+#todo-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#todo-input {
+  width: 145px;
+  height: 27px;
+  padding: 4px 8px;
+  border: 1px solid #cfcfcf;
+  border-radius: 3px;
+  background: white;
+}
+
+#todo-form button {
+  height: 27px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 3px;
+  background: #4a95bc;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+#todo-form button:hover {
+  opacity: 0.9;
+}
+
+.lists {
+  display: flex;
+  gap: 10px;
+}
+
+.list-box {
+  flex: 1;
+  min-height: 420px;
+  background: #efefef;
+  border: 1px solid #d0d0d0;
+  border-radius: 10px;
+  padding: 8px 10px 12px;
+}
+
+.list-box h2 {
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #2f2f2f;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+  padding: 8px 8px 8px 12px;
+  background: #d9d6c9;
+  border-radius: 4px;
+}
+
+li span {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  color: #3c3c3c;
+  word-break: break-word;
+}
+
+li button {
+  width: 26px;
+  height: 24px;
+  border: none;
+  border-radius: 2px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+}
+
+.toggle-btn {
+  background: #8caf48;
+}
+
+.edit-btn,
+.save-btn {
+  background: #3e8db5;
+}
+
+.delete-btn {
+  background: #c65a52;
+}
+
+li button:hover {
+  opacity: 0.9;
+}
+
+.edit-input {
+  width: 100%;
+  padding: 4px 6px;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+  font-size: 13px;
+}
+
+@media (max-width: 768px) {
+  .lists {
+    flex-direction: column;
+  }
+}
