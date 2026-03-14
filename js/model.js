@@ -65,6 +65,7 @@ const Model = (() => {
       });
 
       const newTodo = await response.json();
+      newTodo.id = Date.now();
       this.todos.unshift(newTodo);
       this.saveTodos();
     }
