@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskFlow</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== Auth overlay ===== -->
+  <div id="auth-overlay" class="auth-overlay">
+    <div class="auth-card">
+      <h1 class="auth-logo">TaskFlow</h1>
+      <p class="auth-subtitle">Organize your work, simply.</p>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Sign In</button>
+        <button class="auth-tab" data-tab="signup">Sign Up</button>
+      </div>
+
+      <form id="auth-form" novalidate>
+        <div class="form-group">
+          <label for="auth-username">Username</label>
+          <input type="text" id="auth-username" autocomplete="username" placeholder="Enter username" required />
+        </div>
+        <div class="form-group">
+          <label for="auth-password">Password</label>
+          <input type="password" id="auth-password" autocomplete="current-password" placeholder="Enter password" required />
+        </div>
+        <div id="auth-error" class="auth-error hidden"></div>
+        <button type="submit" class="btn btn-primary btn-full" id="auth-submit">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== Main app ===== -->
+  <div id="app" class="app hidden">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <span class="logo">TaskFlow</span>
+        <button class="btn-icon" id="logout-btn" title="Sign out">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="user-info">
+        <div class="avatar" id="user-avatar">?</div>
+        <span id="username-display">Loading…</span>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="section-header">
+          <span>My Lists</span>
+          <button class="btn-icon" id="new-list-btn" title="New list">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path d="M12 5v14M5 12h14"/>
+            </svg>
+          </button>
+        </div>
+        <ul id="lists-nav" class="lists-nav"></ul>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main-content">
+
+      <!-- No list selected -->
+      <div id="empty-state" class="empty-state">
+        <div class="empty-icon">📋</div>
+        <h2>Select a list to get started</h2>
+        <p>Pick a list from the sidebar or create a new one.</p>
+        <button class="btn btn-primary" id="create-first-list-btn">Create a list</button>
+      </div>
+
+      <!-- Todo panel -->
+      <div id="todo-panel" class="todo-panel hidden">
+        <header class="todo-header">
+          <div class="todo-title-row">
+            <h1 id="list-title" class="list-title">My List</h1>
+            <button class="btn-icon danger" id="delete-list-btn" title="Delete list">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/>
+              </svg>
+            </button>
+          </div>
+          <p id="todo-stats-text" class="todo-stats"></p>
+        </header>
+
+        <div class="todo-toolbar">
+          <form id="todo-form" class="add-todo-form">
+            <input type="text" id="todo-input" placeholder="Add a new task…" autocomplete="off" />
+            <button type="submit" class="btn btn-primary">Add</button>
+          </form>
+          <div class="toolbar-right">
+            <div class="filter-tabs">
+              <button class="filter-tab active" data-filter="all">All</button>
+              <button class="filter-tab" data-filter="active">Active</button>
+              <button class="filter-tab" data-filter="done">Done</button>
+            </div>
+            <button class="btn btn-secondary" id="sort-btn">Sort A–Z</button>
+          </div>
+        </div>
+
+        <ul id="todo-list" class="todo-list"></ul>
+        <div id="todo-empty" class="todo-empty hidden">
+          <p>No tasks here. Add one above!</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ===== New list modal ===== -->
+  <div id="new-list-modal" class="modal hidden">
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="modal-card">
+      <h2>New List</h2>
+      <form id="new-list-form">
+        <div class="form-group">
+          <label for="new-list-name">List name</label>
+          <input type="text" id="new-list-name" placeholder="e.g. Work, Personal…" required />
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" id="cancel-list-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== Toast container ===== -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <script type="module" src="js/controller.js"></script>
+</body>
+</html>
